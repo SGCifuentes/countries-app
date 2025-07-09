@@ -1,13 +1,16 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { Country } from '../types/Country';
+import { CountryCardProps } from './props';
 
-const CountryCard = ({ country, id }: { country: Country; id: number }) => {
+export default function CountryCardClient({ country, id }: CountryCardProps) {
   return (
     <Link
       aria-label={`See ${country.name.common} details`}
       className='w-full h-full'
       href={`/${country.name.common}`}
+      data-testid={`${country.name.common}-card`}
     >
       <div className='w-full h-full bg-white border-1 border-gray-200 shadow-md rounded-lg mb-4 dark:bg-[var(--dark-blue)] dark:border-none'>
         <Image
@@ -15,7 +18,7 @@ const CountryCard = ({ country, id }: { country: Country; id: number }) => {
           height={1000}
           className='rounded-t-lg w-full aspect-video'
           src={country.flags.png}
-          alt='The flag of Germany is composed of three equal horizontal bands of black, red and gold.'
+          alt={country.flags.alt || `Flag of ${country.name.common}`}
           loading={id < 5 ? 'eager' : 'lazy'}
           priority={id < 5}
         />
@@ -25,19 +28,16 @@ const CountryCard = ({ country, id }: { country: Country; id: number }) => {
           </h2>
           <p className='font-light'>
             <b className='font-semibold'>Population:</b>{' '}
-            {country.population.toLocaleString()}
+            {country.population.toLocaleString('en-US')}
           </p>
           <p className='font-light'>
             <b className='font-semibold'>Region:</b> {country.region}
           </p>
           <p className='font-light'>
-            <b className='font-semibold'>Capital:</b>{' '}
-            {country.capital?.[0] || 'N/A'}
+            <b className='font-semibold'>Capital:</b> {country.capital?.[0]}
           </p>
         </div>
       </div>
     </Link>
   );
-};
-
-export default CountryCard;
+}

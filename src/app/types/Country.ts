@@ -57,8 +57,7 @@ export interface Currencies {
 }
 
 export interface Demonyms {
-  eng: Eng;
-  fra: Eng;
+  [key: string]: Eng;
 }
 
 export interface Eng {
@@ -78,9 +77,7 @@ export interface Idd {
 }
 
 export interface Languages {
-  prs: string;
-  pus: string;
-  tuk: string;
+  [key: string]: string;
 }
 
 export interface Maps {

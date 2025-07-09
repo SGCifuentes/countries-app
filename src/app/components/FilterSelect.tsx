@@ -10,22 +10,16 @@ interface FilterSelectProps {
   defaultValue?: string;
 }
 
-const FilterSelect = ({ defaultValue }: FilterSelectProps) => {
+export default function FilterSelect({ defaultValue }: FilterSelectProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [selected, setSelected] = useState<string | null>(defaultValue || null);
   const [open, setOpen] = useState(false);
 
-  const handleSelect = (region: string | null) => {
+  const handleSelect = (region: string) => {
     const params = new URLSearchParams(searchParams.toString());
-
-    if (region) {
-      params.set('region', region);
-    } else {
-      params.delete('region');
-    }
-
+    params.set('region', region);
     router.push(`/?${params.toString()}`);
     setOpen(false);
   };
@@ -45,11 +39,14 @@ const FilterSelect = ({ defaultValue }: FilterSelectProps) => {
       </button>
 
       {open && (
-        <div className='absolute border-1 border-gray-200 mt-2 w-full flex justify-between shadow-md items-center bg-[var(--dark-blue)] py-4 px-6 rounded-lg dark:border-none'>
+        <div className='absolute border-1 border-gray-200 mt-2 w-full flex justify-between shadow-md items-center bg-[var(--dark-blue)] rounded-lg dark:border-none'>
           <ul className='w-full'>
             {regions.map((region) => (
               <li key={region}>
-                <button onClick={() => handleSelect(region)} className='py-1'>
+                <button
+                  onClick={() => handleSelect(region)}
+                  className='py-4 px-6 w-full text-left hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer'
+                >
                   {region}
                 </button>
               </li>
@@ -59,6 +56,4 @@ const FilterSelect = ({ defaultValue }: FilterSelectProps) => {
       )}
     </div>
   );
-};
-
-export default FilterSelect;
+}

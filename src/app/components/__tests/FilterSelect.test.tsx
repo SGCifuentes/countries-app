@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import SearchInput from '../SearchInput';
 import * as nextNav from 'next/navigation';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import FilterSelect from '../FilterSelect';
 
-describe('SearchInput', () => {
+describe('FilterSelect', () => {
   const push = vi.fn();
 
   beforeEach(() => {
@@ -49,23 +49,23 @@ describe('SearchInput', () => {
     };
   });
 
-  it('Show initial value amd update the url when write', () => {
-    render(<SearchInput defaultValue='col' />);
+  it('open the filter select and select an option', () => {
+    render(<FilterSelect defaultValue='' />);
 
-    const input = screen.getByPlaceholderText(/search for a country/i);
-    expect(input).toHaveValue('col');
-
-    fireEvent.change(input, { target: { value: 'arg' } });
-    expect(push).toHaveBeenCalledWith('/?name=arg');
+    fireEvent.click(screen.getByRole('button', { name: /filter by region/i }));
+    fireEvent.click(screen.getByText('Africa'));
+    expect(push).toHaveBeenCalledWith('/?region=Africa');
   });
 
-  it('Show empty initial value amd don`t add query in the url', () => {
-    render(<SearchInput defaultValue='' />);
+  it('select another option', () => {
+    render(<FilterSelect defaultValue='' />);
 
-    const input = screen.getByPlaceholderText(/search for a country/i);
-    expect(input).toHaveValue('');
+    fireEvent.click(screen.getByRole('button', { name: /filter by region/i }));
+    fireEvent.click(screen.getByText('Africa'));
+    expect(push).toHaveBeenCalledWith('/?region=Africa');
 
-    fireEvent.change(input, { target: { value: '' } });
-    expect(push).toHaveBeenCalledWith('/');
+    fireEvent.click(screen.getByRole('button', { name: /filter by region/i }));
+    fireEvent.click(screen.getByText('Americas'));
+    expect(push).toHaveBeenCalledWith('/?region=Americas');
   });
 });

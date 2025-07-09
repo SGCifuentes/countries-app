@@ -1,4 +1,4 @@
-import CountryCard from './components/CountryCard';
+import CountryCard from './components/CountryCard/server';
 import FilterSelect from './components/FilterSelect';
 import SearchInput from './components/SearchInput';
 import { Country } from './types/Country';
@@ -39,8 +39,13 @@ export default async function Home({ searchParams }: Props) {
 
       <div className='w-full md:w-full mx-auto grid grid-cols-1 sm:w-3/4 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-18 gap-4'>
         {filtered?.map((country, id) => (
-          <CountryCard country={country} key={country.cca3} id={id} />
+          <CountryCard country={country} key={id} id={id} />
         ))}
+        {filtered.length === 0 && (
+          <div className='col-span-full text-center text-gray-500'>
+            No countries found.
+          </div>
+        )}
       </div>
     </main>
   );

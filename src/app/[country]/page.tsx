@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from '@heroicons/react/16/solid';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import CountryDetail from '../components/CountryDetail';
+import CountryDetailServer from '../components/CountryDetail/server';
 import { Country } from '../types/Country';
 
 type Props = {
@@ -55,7 +55,7 @@ export default async function Page({
       >
         <ArrowLeftIcon height={16} width={16} /> <p>Back</p>
       </Link>
-      <CountryDetail country={countryData} />
+      {countryData && <CountryDetailServer country={countryData} />}
     </main>
   );
 }

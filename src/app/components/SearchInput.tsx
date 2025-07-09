@@ -7,7 +7,7 @@ interface SearchInputProps {
   defaultValue: string;
 }
 
-const SearchInput = ({ defaultValue }: SearchInputProps) => {
+export default function SearchInput({ defaultValue }: SearchInputProps) {
   const [value, setValue] = useState(defaultValue);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -21,7 +21,7 @@ const SearchInput = ({ defaultValue }: SearchInputProps) => {
       params.delete('name');
     }
 
-    router.push(`/?${params.toString()}`);
+    router.push(`/${params.toString() && `?${params.toString()}`}`);
   }, [router, searchParams, value]);
 
   useEffect(() => {
@@ -40,6 +40,4 @@ const SearchInput = ({ defaultValue }: SearchInputProps) => {
       />
     </div>
   );
-};
-
-export default SearchInput;
+}

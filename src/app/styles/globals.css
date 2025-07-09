@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 :root {
-  --dark-blue: hsl(0, 0%, 100%);;
+  --dark-blue: hsl(0, 0%, 100%);
   --dark-gray: hsl(0, 0%, 52%);
   --background: hsl(0, 0%, 98%);
   --foreground: hsl(200, 15%, 8%);

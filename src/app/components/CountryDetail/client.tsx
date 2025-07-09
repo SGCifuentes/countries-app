@@ -1,14 +1,16 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { Country } from '../types/Country';
-import { getFirstElement } from '../utils/getFirstElement';
+import { getFirstElement } from '../../utils/getFirstElement';
+import { CountryDetailsProps } from './props';
 
-const CountryDetail = ({ country }: { country: Country }) => {
+export default function CountryDetailClient({ country }: CountryDetailsProps) {
   return (
     <div className='text-base flex flex-col gap-8 md:flex-row md:items-center md:gap-12'>
       <Image
-        src={country?.flags.png}
-        alt={country.flags.alt || `Flag of ${country.name.common}`}
+        src={country?.flags?.png}
+        alt={country.flags?.alt || `Flag of ${country.name.common}`}
         width={600}
         height={400}
         className='w-full h-68 sm:h-84 shadow-md mt-8 mb-2'
@@ -19,43 +21,43 @@ const CountryDetail = ({ country }: { country: Country }) => {
           <div className='flex flex-col gap-2'>
             <p>
               <b>Native name: </b>
-              {getFirstElement(country.name.nativeName)?.official || 'N/A'}
+              {getFirstElement(country.name.nativeName)?.official}
             </p>
             <p>
               <b>Population: </b>
-              {country?.population.toLocaleString() || 'N/A'}
+              {country?.population.toLocaleString('en-US')}
             </p>
             <p>
               <b>Region: </b>
-              {country?.region || 'N/A'}
+              {country?.region}
             </p>
             <p>
               <b>Sub Region: </b>
-              {country?.subregion || 'N/A'}
+              {country?.subregion}
             </p>
             <p>
               <b>Capital: </b>
-              {country?.capital?.[0] || 'N/A'}
+              {country?.capital?.[0]}
             </p>
           </div>
           <div className='flex flex-col gap-2'>
             <p>
               <b>Top Level Domain: </b>
-              {country?.tld?.[0] || 'N/A'}
+              {country?.tld?.[0]}
             </p>
             <p>
               <b>Currency: </b>
-              {getFirstElement(country?.currencies)?.name || 'N/A'}
+              {getFirstElement(country?.currencies)?.name}
             </p>
             <p>
               <b>Languages: </b>
-              {Object.values(country?.languages || {})
+              {Object.values(country?.languages)
                 .map((lang) => lang)
-                .join(', ') || 'N/A'}
+                .join(', ')}
             </p>
           </div>
         </div>
-        {country.borders && (
+        {country?.borders && (
           <div className='mt-6 flex flex-col gap-2'>
             <h3>Border countries:</h3>
             <ul className='w-full flex flex-wrap gap-2'>
@@ -78,6 +80,4 @@ const CountryDetail = ({ country }: { country: Country }) => {
       </div>
     </div>
   );
-};
-
-export default CountryDetail;
+}
