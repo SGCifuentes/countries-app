@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🌍 Where in the World?  
 
-First, run the development server:
+**Una aplicación frontend en Next.js que te permite explorar países de todo el mundo, buscar por nombre, filtrar por región y ver detalles ampliados de cada uno.**
 
+---
+
+## 🖼️ Demo / Capturas de Pantalla
+> **Demo**
+> [Where in the World?](https://interview-where-in-the-world.netlify.app/)
+
+> **Listado de países (modo oscuro)**  
+> ![Listado de países](https://i.ibb.co/SbRqnyx/image.png)
+
+> **Detalle de un país**  
+> ![Detalle de país](https://i.ibb.co/V0KJpxd7/image.png)
+
+---
+
+## 🛠️ Tecnologías
+
+- **Framework**: Next.js  
+- **Librerías**: React, Tailwind CSS, Heroicons  
+- **Testing**: Vitest + React Testing Library  
+- **Fetch / SSR**: Datos cargados con SSR desde [restcountries.com](https://restcountries.com)  
+- **Hosting**: Netlify 
+
+---
+
+## ⚙️ Instalación y Puesta en Marcha
+- Clona el repositorio  
+```bash
+git clone https://github.com/SGCifuentes/countries-app.git
+cd countries-app
+```  
+- Instala dependencias
+```bash
+npm install
+```
+- Levantar proyecto
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+- Correr tests
+```bash
+npm run test
+# or
+yarn test
+```
+- Ver coverage
+```bash
+npm run coverage
+# or
+yarn coverage
+```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Estructura del Proyecto
+    src/
+    ├── app/                # Páginas y layouts de Next.js
+    │   ├── layout.tsx
+    │   └── page.tsx
+    ├── components/         # Componentes reutilizables
+    │   ├── CountryCard.tsx
+    │   └── FilterSelect.tsx
+    ├── hooks/              # Custom hooks (p. ej. useFetchCountries)
+    ├── mocks/              # Datos de ejemplo para tests
+    ├── styles/             # Clases globales y config de Tailwind
+    ├── types/              # Tipos TypeScript
+    ├── utils/              # Funciones auxiliares
+    └── __tests__/          # Tests de Vitest + RTL
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
