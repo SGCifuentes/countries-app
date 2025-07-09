@@ -12,6 +12,9 @@
 > **Listado de países (modo oscuro)**  
 > ![Listado de países](https://i.ibb.co/SbRqnyx/image.png)
 
+> **Listado de países mobile (modo claro)**  
+> ![Listado de países](https://i.ibb.co/ZpVhBxG2/image.png)
+
 > **Detalle de un país**  
 > ![Detalle de país](https://i.ibb.co/V0KJpxd7/image.png)
 
