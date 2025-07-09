@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/const/const';
 import { ArrowLeftIcon } from '@heroicons/react/16/solid';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -23,7 +24,7 @@ export default async function Page({
   params: Promise<{ country: string }>;
 }) {
   const { country } = await params;
-  const res = await fetch('https://restcountries.com/v3.1/name/' + country, {
+  const res = await fetch(`${BASE_URL}/name/${country}`, {
     cache: 'force-cache'
   });
 
@@ -32,10 +33,9 @@ export default async function Page({
 
   if (countryData?.borders && countryData?.borders.length > 0) {
     const bordersCode = countryData?.borders?.join(',');
-    const codes = await fetch(
-      `https://restcountries.com/v3.1/alpha?codes=${bordersCode}`,
-      { cache: 'force-cache' }
-    );
+    const codes = await fetch(`${BASE_URL}/alpha?codes=${bordersCode}`, {
+      cache: 'force-cache'
+    });
     const borders: Country[] = await codes.json();
 
     countryData = {

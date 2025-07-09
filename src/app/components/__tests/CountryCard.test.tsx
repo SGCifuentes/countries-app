@@ -20,7 +20,7 @@ describe('CountryCard', () => {
           {...props}
           href={href}
           onClick={(e) => {
-            e.preventDefault(); // cancela la navegación de JSDOM
+            e.preventDefault();
           }}
         >
           {children}
@@ -102,5 +102,4 @@ describe('CountryCard', () => {
     const img = screen.getByAltText('Flag of Colombia');
     expect(img).toBeInTheDocument();
   });
-
 });

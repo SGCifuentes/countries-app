@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/const/const';
 import CountryCard from './components/CountryCard/server';
 import FilterSelect from './components/FilterSelect';
 import SearchInput from './components/SearchInput';
@@ -13,7 +14,7 @@ interface Props {
 export default async function Home({ searchParams }: Props) {
   const params = await searchParams;
   const res = await fetch(
-    'https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags',
+    `${BASE_URL}/all?fields=name,population,region,capital,flags`,
     { cache: 'force-cache' }
   );
   const countries: Country[] = await res.json();

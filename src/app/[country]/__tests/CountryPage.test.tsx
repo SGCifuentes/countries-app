@@ -2,6 +2,7 @@ import { Country } from '@/app/types/Country';
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import Page, { generateMetadata } from '../page';
+import { BASE_URL } from '@/const/const';
 
 vi.mock('../../components/CountryDetail/server', () => ({
   __esModule: true,
@@ -50,10 +51,9 @@ describe('Country Detail Page', () => {
     );
 
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith(
-      'https://restcountries.com/v3.1/name/Spain',
-      { cache: 'force-cache' }
-    );
+    expect(fetch).toHaveBeenCalledWith(`${BASE_URL}/name/Spain`, {
+      cache: 'force-cache'
+    });
   });
 
   it('should render with borders', async () => {
@@ -79,14 +79,12 @@ describe('Country Detail Page', () => {
     });
     render(<>{element}</>);
     expect(fetch).toHaveBeenCalledTimes(2);
-    expect(fetch).toHaveBeenNthCalledWith(
-      1,
-      'https://restcountries.com/v3.1/name/Chile',
-      { cache: 'force-cache' }
-    );
+    expect(fetch).toHaveBeenNthCalledWith(1, `${BASE_URL}/name/Chile`, {
+      cache: 'force-cache'
+    });
     expect(fetch).toHaveBeenNthCalledWith(
       2,
-      'https://restcountries.com/v3.1/alpha?codes=ARG,PER',
+      `${BASE_URL}/alpha?codes=ARG,PER`,
       { cache: 'force-cache' }
     );
 
